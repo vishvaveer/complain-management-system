@@ -13,7 +13,7 @@
       "link": "https://www.asus.com/in/support/warranty-status-inquiry/"
     },
     {
-      "name": "Lenovo",
+      "name": "Lenovoi",
       "link": "https://pcsupport.lenovo.com/in/en/warranty-lookup#/"
     },
     {
@@ -41,7 +41,7 @@
       "link": "https://www.benq.com/en-in/support/warranty.html"
     }
   ],
-  "mice": [
+  "mouse": [
     {
       "name": "Logitech",
       "link": "https://www.logitech.com/en-in/tos/limited-hardware-warranty.html"

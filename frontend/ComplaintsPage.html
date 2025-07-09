@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Complaint Registration</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f2f5;
+      padding: 40px;
+    }
+    .container {
+      max-width: 550px;
+      margin: auto;
+      background: #ffffff;
+      padding: 30px 40px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #333;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: 600;
+      color: #555;
+    }
+    input, textarea, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 6px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 15px;
+      box-sizing: border-box;
+    }
+    input:invalid {
+      border-color: red;
+    }
+    button {
+      margin-top: 25px;
+      width: 100%;
+      background-color: #007BFF;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .result {
+      margin-top: 25px;
+      font-size: 17px;
+      color: green;
+      font-weight: 600;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Register a Complaint</h2>
+  <form id="complaintForm" novalidate>
+    <label for="name">Full Name:</label>
+    <input type="text" id="name" required placeholder="Your name"/>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" required placeholder="example@domain.com"/>
+
+    <label for="product">Product:</label>
+    <select id="product" required>
+      <option value="">-- Select Product --</option>
+      <option value="Computers">Computers</option>
+      <option value="Mouse">Mouse</option>
+      <option value="Printers">Printers</option>
+      <option value="Keyboards">Keyboards</option>
+      <option value="Other">Other</option>
+    </select>
+	
+	<label for="department">Department:</label>
+    <select id="department" required>
+      <option value="">-- Select Department --</option>
+      <option value="D1">D1</option>
+      <option value="D2">D2</option>
+      <option value="D3">D3</option>
+      <option value="D4">D4</option>
+    </select>
+
+    <label for="subject">Subject:</label>
+    <input type="text" id="subject" required placeholder="Complaint subject"/>
+
+    <label for="description">Complaint Description:</label>
+    <textarea id="description" rows="4" required placeholder="Describe your issue"></textarea>
+
+    <button type="submit">Submit Complaint</button>
+  </form>
+
+  <div class="result" id="resultMessage"></div>
+</div>
+
+<script>
+  document.getElementById("complaintForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    // Form fields
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const product = document.getElementById("product").value;
+    const subject = document.getElementById("subject").value.trim();
+    const description = document.getElementById("description").value.trim();
+
+    const resultMessage = document.getElementById("resultMessage");
+
+    // Email validation regex
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    // Validate form
+    if (!name || !email || !emailRegex.test(email) || !product || !subject || !description) {
+      resultMessage.style.color = "red";
+      resultMessage.textContent = "Please fill all fields correctly.";
+      return;
+    }
+
+    // Generate a unique complaint number
+    const complaintNumber = "REQ" + Date.now().toString(36).toUpperCase() + Math.floor(Math.random() * 1000);
+
+    resultMessage.style.color = "green";
+    resultMessage.textContent = "Complaint Registered Successfully !! Your Complaint Number is: " + complaintNumber;
+
+    // Reset form
+    this.reset();
+  });
+</script>
+
+</body>
+</html>

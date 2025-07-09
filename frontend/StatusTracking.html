@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Complaint Status Tracker</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0f2f5;
+      padding: 40px;
+    }
+    .container {
+      max-width: 500px;
+      margin: auto;
+      background: #ffffff;
+      padding: 30px 40px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 25px;
+    }
+    label {
+      font-weight: 600;
+      color: #555;
+    }
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #28a745;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #218838;
+    }
+    .status-message {
+      margin-top: 20px;
+      font-size: 16px;
+      text-align: center;
+      font-weight: 600;
+    }
+    .found {
+      color: green;
+    }
+    .not-found {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Track Complaint Status</h2>
+  <label for="complaintNumber">Enter Your Complaint Number:</label>
+  <input type="text" id="complaintNumber" placeholder="e.g. REQMCW89N81338" required />
+  <button onclick="trackStatus()">Check Status</button>
+
+  <div class="status-message" id="statusMessage"></div>
+</div>
+
+<script>
+  // Dummy complaints database (can be replaced with backend or localStorage)
+  const complaints = {
+    "REQMCW89N81339": { status: "Pending" },
+    "REQMCW89N81340": { status: "Resolved" },
+    "REQMCW89N81338": { status: "In Progress" }
+  };
+
+  function trackStatus() {
+    const complaintNumber = document.getElementById("complaintNumber").value.trim();
+    const statusMessage = document.getElementById("statusMessage");
+
+    if (!complaintNumber) {
+      statusMessage.textContent = "Please enter a complaint number.";
+      statusMessage.className = "status-message not-found";
+      return;
+    }
+
+    if (complaints[complaintNumber]) {
+      statusMessage.textContent = `Status: ${complaints[complaintNumber].status}`;
+      statusMessage.className = "status-message found";
+    } else {
+      statusMessage.textContent = "Complaint number not found. Please check and try again.";
+      statusMessage.className = "status-message not-found";
+    }
+  }
+</script>
+
+</body>
+</html>
