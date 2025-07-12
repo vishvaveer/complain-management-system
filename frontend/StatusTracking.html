@@ -76,9 +76,10 @@
 <script>
   // Dummy complaints database (can be replaced with backend or localStorage)
   const complaints = {
-    "REQMCW89N81339": { status: "Pending" },
+    "REQMCW89N81339": { status: "not in amc scope" },
     "REQMCW89N81340": { status: "Resolved" },
-    "REQMCW89N81338": { status: "In Progress" }
+    "REQMCW89N81338": { status: "In Progress" },
+	"REQMCW89N81341": { status: "asset is under warranty" } 
   };
 
   function trackStatus() {
